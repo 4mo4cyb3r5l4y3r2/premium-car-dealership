@@ -1,444 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AM Auto Emporium</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: radial-gradient(circle, #25271b, #9d8bb3, #a02d2d);
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Expense Tracker</title>
 
-    header {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-    }
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 
-    section {
-      text-align: center;
-      padding: 2rem;
-    }
-
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-      width: 100%;
-      margin-top: 20px;
-    }
-  </style>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
-<!-- Header Section -->
-<header class="hero-section" id="dashboard">
-  <div class="overlay"></div>
-  <div class="container text-center">
-    <h1 class="display-4">Welcome to AM Auto Emporium</h1>
-    <p class="lead">Your trusted platform for seamless vehicle rentals and exchanges.</p>
-    <div class="button-group">
-      <a href="#registration" class="btn btn-primary btn-lg">Login</a>
-      <a href="#products" class="btn btn-outline-light btn-lg">Explore Products</a>
-    </div>
-  </div>
-</header>
 
-<!-- CSS for Styling -->
-<style>
-  .hero-section {
-    position: relative;
-    background: url('https://source.unsplash.com/1600x900/?car,road') no-repeat center center/cover;
-    background-image: url('https://c1.wallpaperflare.com/preview/508/250/386/porsche-oldtimer-m%C3%BChlheim-mulhouse.jpg');
-    color: white;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-  }
+<body class="bg-light">
+  <div class="container mt-4">
+    <h1 class="text-center mb-4">💰 Personal Expense Tracker</h1>
 
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); 
-  }
-
-  .hero-section .container {
-    position: relative;
-    z-index: 2;
-  }
-
-  .button-group {
-    margin-top: 20px;
-  }
-
-  .btn-primary {
-    background: #1c1ca1;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1.2rem;
-    border-radius: 30px;
-    transition: 0.3s;
-    margin-right: 15px;
-  }
-
-  .btn-primary:hover {
-    background: #ff4500;
-  }
-
-  .btn-outline-light {
-    border: 2px solid white;
-    padding: 12px 25px;
-    font-size: 1.2rem;
-    border-radius: 30px;
-    color: white;
-    transition: 0.3s;
-  }
-
-  .btn-outline-light:hover {
-    background: white;
-    color: #333;
-  }
-</style>
-
-<body>
-
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">AM Auto Emporium</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#dashboard">Dashboard</a>
-      <li class="nav-item">
-        <a class="nav-link" href="#products">Products</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#contact">Contact</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#registration">Registration</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<!-- Navigation Bar Ends -->
-
-
-<!-- Product Display -->
-<div class="container mt-5 pt-4" id="products">
-  <h2 class="text-center">Product And Services</h2>
-  <div class="row">
-    
-    <!-- Product 1 -->
-    <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://media.assettype.com/evoindia%2F2021-01%2Fa8249eac-e2c8-4234-91c0-ff2163b3ffed%2FP90411344_highRes.jpg" class="card-img-top" alt="BMW M5 CS">
-        <div class="card-body">
-          <h5 class="card-title">2023 BMW M5 CS</h5>
-          <p class="card-text">4.4L V8 twin-turbo engine with 635 hp & 750 Nm torque. 0-60 mph in 2.9 sec.</p>
-          <p class="card-text"><strong>$117,355</strong></p>
-          <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-          <a href="#" class="btn btn-success ml-2">RENT</a>
-        </div>
+    <!-- Add Expense Form -->
+    <div class="card mb-4">
+      <div class="card-header">Add New Expense</div>
+      <div class="card-body">
+        <form id="expense-form">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <input type="number" class="form-control" id="amount" placeholder="Amount (₹)" required />
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" id="category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Bills">Bills</option>
+                <option value="Entertainment">Entertainment</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input type="date" class="form-control" id="date" required />
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" id="description" placeholder="Description (Optional)" />
+            </div>
+            <div class="col-12 mt-2 text-end">
+              <button type="submit" class="btn btn-primary">Add Expense</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 
-    <!-- Product 2 -->
-    <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlPqL0jpeGFsCGHSahaDtyhOnJqBctLS4kWJGgUqvOZ7Ox0dUbRiBQzGXl56ek4MiJSjQ&usqp=CAU" class="card-img-top" alt="G63 AMG">
-        <div class="card-body">
-          <h5 class="card-title">Mercedes-Benz G 63 AMG 6X6</h5>
-          <p class="card-text">5.5L V8 twin-turbo, 544 hp, 760 Nm torque. 0-60 mph in 7.9 sec.</p>
-          <p class="card-text"><strong>BID Starts from $600,000</strong></p>
-          <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-          <a href="#" class="btn btn-success ml-2">RENT</a>
-        </div>
+    <!-- Expense List -->
+    <div class="card mb-4">
+      <div class="card-header">Expenses</div>
+      <div class="card-body">
+        <table class="table table-bordered table-hover" id="expenseTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Amount (₹)</th>
+            </tr>
+          </thead>
+          <tbody id="expense-table-body"></tbody>
+        </table>
       </div>
     </div>
 
-    <!-- Product 3 -->
-    <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy_2PmXP-RuEvoZRozIEs-XUHM9Yb_JwQ5GA&usqp=CAU" class="card-img-top" alt="Koenigsegg Gemera">
-        <div class="card-body">
-          <h5 class="card-title">Koenigsegg Gemera</h5>
-          <p class="card-text">2.0L TFG twin-turbocharged I3 + electric motor: 1,400 hp.</p>
-          <p class="card-text"><strong>$1,700,000</strong></p>
-          <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-          <a href="#" class="btn btn-success ml-2">RENT</a>
+    <!-- Dashboard -->
+    <div class="card">
+      <div class="card-header">Dashboard</div>
+      <div class="card-body">
+        <h5>Total Expenses This Month: ₹<span id="total-expense">0</span></h5>
+        
+        <!-- Pie Chart -->
+        <div style="max-width: 400px; margin: 20px auto;">
+          <canvas id="expenseChart"></canvas>
+        </div>
+
+        <!-- Bar Chart -->
+        <h4 class="mt-5">Detailed Expense Breakdown</h4>
+        <div style="overflow-x: auto; max-width: 100%;">
+          <canvas id="barChart"></canvas>
         </div>
       </div>
-    </div>
-
-    <!-- Product 4 -->
-    <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.m2LBb1vSRsTsaCQfTT8P5QHaEo?rs=1&pid=ImgDetMain" class="card-img-top" alt="Lamborghini Aventador SVJ">
-        <div class="card-body">
-          <h5 class="card-title">Lamborghini Aventador SVJ</h5>
-          <p class="card-text">6.5L V12, 770 hp, 720 Nm torque. 0-60 mph in 2.8 sec.</p>
-          <p class="card-text"><strong>$517,770</strong></p>
-          <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-          <a href="#" class="btn btn-success ml-2">RENT</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Product 5 -->
-    <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.jIR_kk20HkgIWNDsH6uFXwHaEK?w=307&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" class="card-img-top" alt="Bugatti Chiron">
-        <div class="card-body">
-          <h5 class="card-title">Bugatti Chiron</h5>
-          <p class="card-text">8.0L quad-turbo W16, 1,479 hp, 1,600 Nm torque. 0-60 mph in 2.3 sec.</p>
-          <p class="card-text"><strong>$3,000,000</strong></p>
-          <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-          <a href="#" class="btn btn-success ml-2">RENT</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Product 6 -->
-    <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.0266u5IPqpQv_hh-KFqrlwHaEK?w=307&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" class="card-img-top" alt="Ferrari SF90 Stradale">
-        <div class="card-body">
-          <h5 class="card-title">Ferrari SF90 Stradale</h5>
-          <p class="card-text">4.0L V8 twin-turbo + electric motors, 986 hp, 0-60 mph in 2.5 sec.</p>
-          <p class="card-text"><strong>$524,815</strong></p>
-          <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-          <a href="#" class="btn btn-success ml-2">RENT</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Product 7 -->
-    <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0DYTnoNZdRcHxlJd0qQ-PEp3NKWJrD1rDkQ&s" class="card-img-top" alt="McLaren 765LT">
-        <div class="card-body">
-          <h5 class="card-title">McLaren 765LT</h5>
-          <p class="card-text">4.0L V8 twin-turbo, 755 hp, 800 Nm torque. 0-60 mph in 2.7 sec.</p>
-          <p class="card-text"><strong>$382,500</strong></p>
-          <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-          <a href="#" class="btn btn-success ml-2">RENT</a>
-        </div>
-      </div>
-    </div>
-
-<!-- Product 8 -->
-<div class="col-lg-4 mb-4">
-  <div class="card">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0F3gMoZ7Uq2sR_Z3MIFS2L01iFHrZzaHd_A&s" class="card-img-top" alt="Aston Martin Valkyrie">
-    <div class="card-body">
-      <h5 class="card-title">Aston Martin Valkyrie</h5>
-      <p class="card-text">6.5L V12 hybrid, 1,160 hp, 0-60 mph in 2.5 sec.</p>
-      <p class="card-text"><strong>$3,500,000</strong></p>
-      <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-      <a href="#" class="btn btn-success ml-2">RENT</a>
-    </div>
-  </div>
-</div>
-<!-- Product 9 -->
-<div class="col-lg-4 mb-4">
-  <div class="card">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnvhMkwFqf9_LrtkVFDljCgc1Da3C5iwGz4A&s" class="card-img-top" alt="Pagani Huayra">
-    <div class="card-body">
-      <h5 class="card-title">Pagani Huayra</h5>
-      <p class="card-text">6.0L twin-turbo V12, 720 hp, 1,000 Nm torque. 0-60 mph in 2.8 sec.</p>
-      <p class="card-text"><strong>$3,400,000</strong></p>
-      <a href="#" class="btn btn-primary">BOOK/BUILD</a>
-      <a href="#" class="btn btn-success ml-2">RENT</a>
-    </div>
-  </div>
-</div>
-
-  <!-- Product Display Ends -->
-
-<!-- Contact Section -->
-<div class="container mt-5" id="contact">
-  <h2 class="text-center">Contact Us</h2>
-  <hr>
-  <div class="row">
-    <div class="col-md-4 text-center">
-      <img src="https://th.bing.com/th/id/OIP.6UQCob3k4a2pATK8nCXnYQHaJ2?w=121&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Location" width="30">
-      <p>Visakhapatnam,Andhra Pradesh, India</p></p>
-    </div>
-    <div class="col-md-4 text-center">
-      <img src="https://th.bing.com/th/id/OIP.x48cYW64hYSL-LYHg-R-kwHaHa?w=210&h=210&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Phone" width="60">
-      <p>+91 9988776655<br>+91 6677889900</p>
-    </div>
-    <div class="col-md-4 text-center">
-      <img src="https://th.bing.com/th/id/OIP.asUF9rvs8vPwgXZSy1uESQHaHx?w=173&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Email" width="40">
-      <p>amautoexchange@gmail.com <br> am04business@gmail.com</p>
     </div>
   </div>
 
- 
-<!-- Registration Form -->
-<section id="registration" class="container mt-5">
-  <h2 class="text-center">User Registration</h2>
-  <form id="registrationForm" onsubmit="return validateForm()">
-    
-    <div class="form-group">
-      <label for="name">Full Name</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-      <small id="nameError" class="text-danger"></small>
-    </div>
-
-    <div class="form-group">
-      <label for="phone">Phone Number</label>
-      <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-      <small id="phoneError" class="text-danger"></small>
-    </div>
-
-    <div class="mb-3">
-      <label for="emailInput">Email:</label>
-      <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-      <small class="text-danger d-none" id="emailError">Enter a valid email address.</small>
-    </div>
-    <div class="form-group">
-      <label for="otp">OTP</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="otp" placeholder="Enter OTP" required>
-        <div class="input-group-append">
-          <button type="button" class="btn btn-primary" onclick="sendOTP()">Send OTP</button>
-        </div>
-      </div>
-      <small id="otpError" class="text-danger"></small>
-    </div>
-
-    <button type="submit" class="btn btn-success btn-block">Login</button>
-  </form>
-</section>
-
-<!-- JavaScript for Validation & OTP -->
-<script>
-  function validateForm() {
-    let isValid = true;
-
-    // Validate Name
-    let name = document.getElementById("name").value;
-    let nameRegex = /^[A-Za-z\s]+$/;
-    if (!nameRegex.test(name)) {
-      document.getElementById("nameError").innerText = "Only alphabets and spaces are allowed.";
-      isValid = false;
-    } else {
-      document.getElementById("nameError").innerText = "";
-    }
-
-    // Validate Phone Number
-    let phone = document.getElementById("phone").value;
-    let phoneRegex = /^[0-9]{10}$/;
-    if (!phoneRegex.test(phone)) {
-      document.getElementById("phoneError").innerText = "Phone number must be 10 digits.";
-      isValid = false;
-    } else {
-      document.getElementById("phoneError").innerText = "";
-    }
-
-    // Validate OTP
-    let otp = document.getElementById("otp").value;
-    let otpRegex = /^[0-9]{6}$/;
-    if (!otpRegex.test(otp)) {
-      document.getElementById("otpError").innerText = "OTP must be 6 digits.";
-      isValid = false;
-    } else {
-      document.getElementById("otpError").innerText = "";
-    }
-
-    return isValid;
-  }
-
-  function sendOTP() {
-    alert("OTP has been sent to your phone number.");
-    // space for implementing actual OTP service in the future
-  }
-</script>
-
-<script>
-  document.getElementById("feedbackForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    let isValid = true;
-    const nameInput = document.getElementById("nameInput");
-    const nameError = document.getElementById("nameError");
-    if (!/^[a-zA-Z\s]+$/.test(nameInput.value.trim())) {
-      nameError.classList.remove("d-none");
-      isValid = false;
-    } else {
-      nameError.classList.add("d-none");
-    }
-
-    const emailInput = document.getElementById("emailInput");
-    const emailError = document.getElementById("emailError");
-    if (!/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
-      emailError.classList.remove("d-none");
-      isValid = false;
-    } else {
-      emailError.classList.add("d-none");
-    }
-
-
-    const feedbackInput = document.getElementById("feedbackInput");
-    const feedbackError = document.getElementById("feedbackError");
-    if (feedbackInput.value.trim().length < 1) {
-      feedbackError.classList.remove("d-none");
-      isValid = false;
-    } else {
-      feedbackError.classList.add("d-none");
-    }
-
-    if (isValid) {
-      alert("Feedback submitted successfully!");
-      event.target.submit();
-    }
-  });
-</script>
-
- <!-- Feedback Form -->
- <div class="text-center mt-4">
-  <h2>Feedback</h2>
-</div>
-<form class="feedback-form" id="feedbackForm" novalidate>
-  <div class="mb-3">
-  <div class="mb-3">
-    <label for="feedbackInput">Your Feedback:</label>
-    <textarea id="feedbackInput" class="form-control" rows="3" required></textarea>
-    <small class="text-danger d-none" id="feedbackError">Feedback must be at least 1 character.</small>
-  </div>
-  <div class="text-center mt-3">
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <button type="reset" class="btn btn-secondary ml-2">Reset</button>
-  </div>
-</form>
-
-
-  <!-- Contact Section Ends -->
-
-  <!-- Footer -->
-  <footer>
-    &copy; E-commerce WebApp made by Adit Mishra.
-  </footer>
-
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>
